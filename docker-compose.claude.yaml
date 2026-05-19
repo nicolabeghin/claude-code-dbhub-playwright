@@ -1,0 +1,5 @@
+services:
+  web:
+    volumes:
+      - ~/.claude:/home/rocky/.claude
+      - ~/.claude.json:/home/rocky/.claude.json
