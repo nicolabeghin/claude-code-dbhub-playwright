@@ -7,9 +7,8 @@ name: claude-code
 # if it hasn't been modified by the user.
 # DDEV environment variables can be interpolated into these filenames
 project_files:
-  - web-build/Dockerfile.claude-code
-  - commands/web/claude
-  - commands/web/glab
+  - web-build/
+  - commands/
+  - docker-compose.claude.yaml
+  - docker-compose.dbhub.yaml
   - config.claude-code.yaml
-  - claude-code/.claude.json
-  - claude-code/.gitignore
