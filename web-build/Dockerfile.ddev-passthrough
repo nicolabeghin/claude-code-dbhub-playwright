@@ -1,0 +1,7 @@
+#ddev-generated
+
+# Replace the in-container `ddev` shim with a passthrough scoped to
+# /mnt/ddev-global-cache/global-commands/web/ — see ddev-passthrough.sh.
+
+COPY ddev-passthrough.sh /usr/local/bin/ddev
+RUN chmod +x /usr/local/bin/ddev

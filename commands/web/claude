@@ -7,4 +7,4 @@
 
 set -e
 
-claude $@
+screen claude --allow-dangerously-skip-permissions $@
