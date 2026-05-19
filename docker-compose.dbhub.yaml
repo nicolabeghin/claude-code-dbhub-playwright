@@ -1,0 +1,23 @@
+#ddev-generated
+
+services:
+  dbhub:
+    image: bytebase/dbhub:latest
+    container_name: "ddev-${DDEV_SITENAME}-dbhub"
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: ${DDEV_APPROOT}
+    external_links:
+      - ddev-router:${DDEV_SITENAME}.${DDEV_TLD}
+    environment:
+      - DBHUB_LOG_LEVEL=info
+      - VIRTUAL_HOST=dbhub.${DDEV_SITENAME}.${DDEV_TLD}
+      - HTTP_EXPOSE=80:22222
+      - HTTPS_EXPOSE=443:22222
+    command:
+      - --transport
+      - http
+      - --port
+      - "22222"
+      - --dsn
+      - "mariadb://root:root@db:3306/db"
