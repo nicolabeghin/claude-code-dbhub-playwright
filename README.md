@@ -6,7 +6,7 @@
 ## Installation
 
 ```shell
-ddev get nicolabeghin/claude-code-dbhub-playwright
+ddev add-on get nicolabeghin/claude-code-dbhub-playwright
 ddev restart
 ```
 
