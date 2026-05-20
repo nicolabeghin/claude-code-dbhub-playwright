@@ -38,6 +38,19 @@ an optional database management UI at:
 https://dbhub.<sitename>.<tld>
 ```
 
+To enable the MCP integration, add the following to your project's `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "dbhub": {
+      "type": "http",
+      "url": "http://dbhub:22222/mcp"
+    }
+  }
+}
+```
+
 To disable it, remove or rename `docker-compose.dbhub.yaml` in your `.ddev/`
 directory.
 
