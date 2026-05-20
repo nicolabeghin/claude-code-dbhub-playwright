@@ -1,0 +1,14 @@
+#ddev-generated
+
+services:
+  playwright:
+    build:
+      context: playwright-build
+      dockerfile: Dockerfile
+    container_name: "ddev-${DDEV_SITENAME}-playwright"
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: ${DDEV_APPROOT}
+    external_links:
+      - ddev-router:${DDEV_SITENAME}.${DDEV_TLD}
+    ipc: host
