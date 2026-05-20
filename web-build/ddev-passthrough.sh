@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#ddev-generated
 # In-container replacement for /usr/local/bin/ddev.
 # Dispatches `ddev <sub>` to /mnt/ddev-global-cache/global-commands/web/<sub>
 # when that file is executable; otherwise exits 127 with a clear error.
