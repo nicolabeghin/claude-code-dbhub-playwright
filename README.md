@@ -3,6 +3,13 @@
 > Opinionated fork of [ddev-claude-code](https://github.com/FreelyGive/ddev-claude-code),
 > extending it with DBHub (database MCP) and Playwright (browser MCP) services.
 
+## Installation
+
+```shell
+ddev get nicolabeghin/claude-code-dbhub-playwright
+ddev restart
+```
+
 ## Claude Code
 
 Claude Code runs inside the DDEV web container and is accessible using
