@@ -79,3 +79,55 @@ The service is reachable from inside the DDEV web container only. If you need
 host access, add a `ports:` entry to `docker-compose.playwright.yaml` — but
 note this will conflict if multiple DDEV projects run the service simultaneously.
 
+### Writing tests
+
+Install `@playwright/test` in your project, then point `playwright.config.js`
+at the in-container browser via its WebSocket endpoint:
+
+```js
+// e2e/playwright.config.js
+const { defineConfig, devices } = require('@playwright/test');
+
+module.exports = defineConfig({
+  testDir: './tests',
+  timeout: 120_000,
+  use: {
+    baseURL: process.env.BASE_URL ?? 'https://<sitename>.ddev.site',
+    ignoreHTTPSErrors: true,
+    screenshot: 'only-on-failure',
+    trace: 'retain-on-failure',
+  },
+  projects: [
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        connectOptions: {
+          wsEndpoint: process.env.PLAYWRIGHT_WS_ENDPOINT
+            ?? 'ws://playwright:3000/ddev-pw-token',
+          timeout: 30_000,
+        },
+      },
+    },
+  ],
+});
+```
+
+A minimal smoke test:
+
+```js
+// e2e/tests/smoke.spec.js
+const { test, expect } = require('@playwright/test');
+
+test('browser is reachable', async ({ page }) => {
+  await page.goto('https://www.google.com', { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveTitle(/Google/);
+});
+```
+
+Run tests from inside the web container:
+
+```shell
+ddev exec npx playwright test --config e2e/playwright.config.js
+```
+
